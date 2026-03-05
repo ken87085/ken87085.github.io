@@ -1,0 +1,133 @@
+import React, { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+import { useLang } from '../i18n/LanguageContext'
+import translations from '../i18n/translations'
+
+
+
+gsap.registerPlugin(SplitText)
+
+function LangToggle() {
+    const { lang, toggleLang } = useLang()
+    return (
+        <a onClick={toggleLang} className="lang">
+            {lang === 'zh' ? 'EN' : 'CH'}
+        </a>
+    )
+}
+
+export default function Hero() {
+    const titleRef = useRef(null)
+    const subtitleRef = useRef(null)
+    const { lang } = useLang()
+    const t = translations[lang].kv
+
+    useEffect(() => {
+        const segmenter = new Intl.Segmenter('zh-TW', { granularity: 'grapheme' })
+
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } })
+
+        tl.fromTo(titleRef.current,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1 }
+        )
+            .fromTo(subtitleRef.current,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1 },
+                '-=0.5'
+            )
+        document.fonts.ready.then(() => {
+            gsap.set(".split", { opacity: 1 });
+
+            const split = SplitText.create(".split", {
+                type: "words",
+                wordsClass: "word",
+                prepareText: (text, el) => {
+                    return [...segmenter.segment(text)].map(s => s.segment).join(String.fromCharCode(8204))
+                },
+                wordDelimiter: { delimiter: /\u200c/, replaceWith: " " },
+                autoSplit: true,
+                onSplit: (self) => {
+                    return gsap.from(self.words, {
+                        y: -100,
+                        opacity: 0,
+                        stagger: 0.1,
+                        duration: 0.8,
+                        ease: "back"
+                    });
+                }
+            })
+        })
+    }, [])
+
+    return (
+        <section className="kv" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+            <h1 ref={titleRef} style={{ marginBottom: '1rem' }}>
+                <span className="split">{t.greeting}</span>
+            </h1>
+            <p ref={subtitleRef}>{t.bio}</p>
+            <div className='personal-info'>
+                <a href="mailto:ken87085@gmail.com">
+                    <svg
+                        viewBox="0 0 122.88 122.88"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M61.44,0A61.44,61.44,0,1,1,0,61.44,61.44,61.44,0,0,1,61.44,0ZM30.73,38,62,63.47,91.91,38Zm-2,42.89L51,58.55,28.71,40.39V80.87ZM53.43,60.55l-22.95,23H92.21l-21.94-23L63,66.71h0a1.57,1.57,0,0,1-2,0l-7.59-6.19Zm19.24-2,21.5,22.54V40.19L72.67,58.51Z"
+                        />
+                    </svg>
+
+                </a>
+                <a href="https://github.com/ken87085" target="_blank" rel="noopener noreferrer">
+                    <svg
+                        viewBox="0 0 640 640"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988l-.023.107z"
+                        />
+                    </svg>
+                </a>
+                <a href="tel:+886-0963-386-887" target="_blank">
+                    <svg
+                        viewBox="0 0 122.88 122.88"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M61.44,0c16.97,0,32.33,6.88,43.44,18c11.12,11.12,18,26.48,18,43.44
+                            c0,16.96-6.88,32.33-18,43.44c-11.12,11.12-26.48,18-43.44,18
+                            c-16.97,0-32.33-6.88-43.44-18C6.88,93.77,0,78.41,0,61.44
+                            C0,44.47,6.88,29.11,18,18C29.11,6.88,44.47,0,61.44,0L61.44,0z
+                            M48.1,56.19c2,3.6,4.3,7.06,7.29,10.21c2.99,3.17,6.72,6.06,11.55,8.51
+                            c0.35,0.18,0.7,0.18,1,0.05c0.46-0.18,0.92-0.55,1.39-1.01
+                            c0.35-0.35,0.8-0.93,1.27-1.55c1.85-2.44,4.15-5.47,7.39-3.96
+                            c0.07,0.03,0.13,0.07,0.2,0.11l10.81,6.22c0.03,0.02,0.07,0.05,0.11,0.07
+                            c1.43,0.98,2.02,2.49,2.03,4.2c0,1.75-0.64,3.71-1.58,5.37
+                            c-1.25,2.19-3.08,3.63-5.2,4.6c-2.01,0.92-4.26,1.43-6.41,1.74
+                            c-3.38,0.5-6.55,0.18-9.8-0.82c-3.17-0.98-6.37-2.6-9.85-4.76
+                            l-0.25-0.16c-1.6-1-3.33-2.07-5.03-3.33c-6.21-4.68-12.54-11.45-16.65-18.9
+                            c-3.46-6.26-5.34-13.01-4.32-19.44c0.57-3.53,2.09-6.74,4.72-8.85
+                            c2.3-1.85,5.4-2.87,9.41-2.51c0.46,0.03,0.87,0.3,1.09,0.7l6.94,11.72
+                            c1.01,1.32,1.14,2.62,0.59,3.92c-0.46,1.07-1.39,2.05-2.66,2.98
+                            c-0.37,0.32-0.82,0.64-1.29,0.98c-1.55,1.12-3.32,2.42-2.71,3.96
+                            L48.1,56.19z"
+                        />
+                    </svg>
+                </a>
+                <LangToggle />
+            </div>
+        </section>
+    )
+}
