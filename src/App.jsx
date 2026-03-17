@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import KV from './components/KV'
+import Header from './components/Header'
 import Portfolio from './components/Portfolio'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
@@ -19,6 +20,7 @@ function AppContent() {
 
     return (
         <div ref={appRef} className="app-wrapper">
+            <Header />
             <KV />
             <Education />
             <section className='container info '>

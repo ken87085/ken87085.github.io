@@ -71,7 +71,7 @@ const translations = {
         },
         portfolio: {
             title: 'Portfolio',
-            techLabel: 'Technologies Used',
+            techLabel: 'Technologies',
             viewMore: 'View More',
         },
     },

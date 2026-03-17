@@ -12,18 +12,20 @@ import sora from '../assets/images/sora.jpeg'
 import mwex from '../assets/images/mwex.jpeg'
 import wordslive from '../assets/images/wordslive.jpeg'
 import century21 from '../assets/images/century21.jpeg'
+import yuanin from '../assets/images/yuanin.jpeg'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
-    { name: '元佑實業 YuanYu', url: 'https://yuanyu.com.tw/', subtitle: { zh: '維修查詢使用 PHP 客製 CSV 檔案上傳後利用 AJAX 查詢', en: 'Maintenance query using PHP custom CSV upload with AJAX' }, desc: 'swiper slide 套件\nCSS Animation\nWordPress ACF 自訂欄位\nRWD', image: yuanyu },
+    { name: '元佑實業 YuanYu', url: 'https://yuanyu.com.tw/', subtitle: { zh: '維修查詢使用 PHP 客製 CSV 檔案上傳後利用 AJAX 查詢', en: 'Maintenance query using PHP custom CSV upload with AJAX' }, desc: 'swiper slide 套件\nCSS Animation\n客製化 PHP Template\nRWD', image: yuanyu },
     { name: 'MWEX Solutions', url: 'https://mwexsolutions.com/', subtitle: { zh: 'Key Vision 使用 three.js 處理動態', en: 'Key Vision animated with three.js' }, desc: 'swiper slide 套件\nCSS Animation\nRWD', image: mwex },
-    { name: '智選家 Witsper', url: 'https://about.witsper.com/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nWordPress ACF 自訂欄位\nRWD', image: witsper },
-    { name: '優群科技 Argosy', url: 'https://argosytw.com/tw/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nWordPress ACF 自訂欄位\nRWD', image: argosy },
-    { name: 'Sora Ventures', url: 'https://sora.vc/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nWordPress ACF 自訂欄位\nRWD', image: sora },
+    { name: '智選家 Witsper', url: 'https://about.witsper.com/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\n客製化 PHP Template\nRWD', image: witsper },
+    { name: '優群科技 Argosy', url: 'https://argosytw.com/tw/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\n客製化 PHP Template\nRWD', image: argosy },
+    { name: 'Sora Ventures', url: 'https://sora.vc/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\n客製化 PHP Template\nRWD', image: sora },
     { name: '沃茲新創空間 Words Live', url: 'https://space.wordslive.com.tw/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nRWD', image: wordslive },
     { name: '21世紀不動產加盟', url: 'https://join21.com.tw/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nRWD', image: century21 },
-    { name: '宗南聯合學佛會 UTBF', url: 'https://utbf.org/', subtitle: { zh: '', en: '' }, desc: 'swiper slide 套件\nCSS Animation\nWordPress ACF自訂欄位\nRWD', image: utbf },
+    { name: '元英高能量雷射治療專家', url: 'https://www.yuaninlaser.com.tw/', subtitle: { zh: '', en: '' }, desc: '串接 User Registration，擴充會員功能（重寫會員選單與 endpoint content）\n開發會員資料 CRUD 機制\n客製化 PHP Template\nRWD', image: yuanin },
+    { name: '宗南聯合學佛會 UTBF', url: 'https://utbf.org/', subtitle: { zh: '佛教月曆使用 PHP 客製 CSV 檔案上傳後串接 FullCalendar 輸出顯示', en: '' }, desc: '客製化 PHP Template\nRWD', image: utbf },
 ]
 
 export default function Portfolio() {
