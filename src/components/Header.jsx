@@ -12,7 +12,7 @@ function LangToggle() {
 
 export default function Header() {
     return (
-        <header className="header">
+        <header id="header" className="header">
             <a href="mailto:ken87085@gmail.com">
                 <svg
                     viewBox="0 0 122.88 122.88"
